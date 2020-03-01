@@ -123,3 +123,4 @@ idea
 #!.elasticbeanstalk/*.global.yml
 z
 /venv/
+/venv/*
