@@ -122,3 +122,4 @@ idea
 #!.elasticbeanstalk/*.cfg.yml
 #!.elasticbeanstalk/*.global.yml
 z
+/venv/
