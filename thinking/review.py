@@ -1,35 +1,24 @@
 import sys
+from collections import deque
 
 sys.stdin = open("review_input.txt", "rt")
 
 if __name__ == '__main__':
-    n = int(input())
-    a = list(map(int, input().split()))
+    strs = list(input().split())
+    if len(strs) == 0:
+        print("")
+    minLength = 2147000000
+    for v in strs:
+        if len(v) < minLength:
+            minLength = len(v)
     s = 0
-    e = n - 1
-    res = ''
-    last = 0
-    while last < a[s] or last < a[e]:
-        if s == e:
-            res += 'L'
-            break
-        if last < a[s] and last < a[e]:
-            if a[s] > a[e]:
-                last = a[e]
-                e -= 1
-                res += 'R'
-            elif a[e] > a[s]:
-                last = a[s]
-                s += 1
-                res += 'L'
-        else:
-            if last < a[s]:
-                last = a[s]
-                s += 1
-                res += 'L'
-            elif last < a[e]:
-                last = a[e]
-                e -= 1
-                res += 'R'
+    e = minLength
+    res = 0
 
-    print(res)
+    while s <= e:
+        mid = (s + e) // 2
+        if all([strs[0][:mid] == x[:mid] for x in strs]):
+            res = mid
+            s = mid + 1
+        else:
+            e = mid - 1
